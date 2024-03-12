@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Fedora VM</title>
+</head>
+<body>
+    <h1>Manage Fedora VM</h1>
+    
+    <!-- Button to start the VM -->
+    <button onclick="startVM()">Start Fedora VM</button>
+    
+    <!-- Button to stop the VM -->
+    <button onclick="stopVM()">Stop Fedora VM</button>
+
+    <!-- Button to destroy the VM -->
+    <button onclick="destroyVM()">Destroy Fedora VM</button>
+    
+    <!-- Button to show Vagrant status -->
+    <button onclick="showStatus()">Show Vagrant Status</button>
+    
+    <!-- Span to display Vagrant status -->
+    <br><br><span id="statusSpan"></span>
+    
+    <script>
+        // Function to send request to PHP script and display response in statusSpan
+        function sendRequest(action) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "vm_handler.php?action=" + action, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("statusSpan").textContent = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+        
+        // Function to start the VM
+        function startVM() {
+            sendRequest("start");
+        }
+        
+        // Function to stop the VM
+        function stopVM() {
+            sendRequest("stop");
+        }
+        
+        // Function to destroy the VM
+        function destroyVM() {
+            sendRequest("destroy");
+        }
+        
+        // Function to show Vagrant status
+        function showStatus() {
+            sendRequest("status");
+        }
+    </script>
+</body>
+</html>
