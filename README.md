@@ -7,3 +7,6 @@ Perform the following steps with an administrator user account on your Windows m
 4) Open any web browser and navigate to http://localhost/index.html.
 5) Use the provided interface to start, stop, destroy, or check the status of your Vagrant VM. Note that the status text refreshes only once, so please be patient. This is a minimum viable product; you may find it helpful to use the terminal or command prompt to check your Vagrant status.
 
+Vagrantfile:
+
+The vagrant file pulls a box from generic/fedora38 and configures it with 1GB RAM, 2 vCPUs, vagrant/vagrant for login, and assigns a hostname of fedora1.
